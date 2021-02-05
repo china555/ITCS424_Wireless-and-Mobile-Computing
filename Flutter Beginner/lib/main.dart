@@ -14,16 +14,14 @@ class Home extends StatelessWidget {
         centerTitle: true,
       ),
       body: Center(
-        child: Text(
-          'Hello china',
-          style: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 2.0,
-            color: Colors.grey[600],
-            fontFamily: 'HachiMaruPop',
-          ),
-        ),
+        // don't need to add dependency in yaml
+        child: Image.asset('assets/space.jpg'),
+        // child: Image(
+        //   image: AssetImage('assets/space.jpg'),
+        //   // image: NetworkImage(
+        //   //   'https://4.bp.blogspot.com/-W0_HZx9NWfI/XD45qcBbaII/AAAAAAAAAn4/paWYCWR06l092c0vcBV2G9HAChXB3nhRwCKgBGAs/w1080-h1920-c/astronaut-space-13-4k.jpg',
+        //   // ),
+        // ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
