@@ -14,13 +14,34 @@ class Home extends StatelessWidget {
         centerTitle: true,
       ),
       body: Center(
-        // don't need to add dependency in yaml
-        child: Image.asset('assets/space.jpg'),
-        // child: Image(
-        //   image: AssetImage('assets/space.jpg'),
-        //   // image: NetworkImage(
-        //   //   'https://4.bp.blogspot.com/-W0_HZx9NWfI/XD45qcBbaII/AAAAAAAAAn4/paWYCWR06l092c0vcBV2G9HAChXB3nhRwCKgBGAs/w1080-h1920-c/astronaut-space-13-4k.jpg',
-        //   // ),
+        child: IconButton(
+            onPressed: () {
+              print('Click me');
+            },
+            icon: Icon(Icons.alternate_email),
+            color: Colors.amber),
+        // child: RaisedButton.icon(
+        //   onPressed: () {},
+        //   icon: Icon(Icons.mail),
+        //   label: Text('mail me'),
+        //   color: Colors.amber,
+        // ),
+        // child: FlatButton(
+        //   onPressed: () {
+        //     print('You click me');
+        //   },
+        //   child: Text('Click me'),
+        //   color: Colors.lightBlue[200],
+        // ),
+        // child: RaisedButton(
+        //   onPressed: () {},
+        //   child: Text('Click me'),
+        //   color: Colors.lightBlue[200],
+        // ),
+        // child: Icon(
+        //   Icons.airport_shuttle,
+        //   color: Colors.lightBlue,
+        //   size: 50.0,
         // ),
       ),
       floatingActionButton: FloatingActionButton(
