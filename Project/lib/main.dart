@@ -8,7 +8,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(182, 54, 39, 1),
+      backgroundColor: Color.fromRGBO(26, 35, 126, 1),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverList(
@@ -47,7 +47,7 @@ class Home extends StatelessWidget {
                   child: FlatButton(
                     padding: EdgeInsets.all(0.0),
                     onPressed: () {
-                      print('Hello');
+                      print('Hello1');
                     },
                   ),
                 ),
@@ -70,7 +70,7 @@ class Home extends StatelessWidget {
                   child: FlatButton(
                     padding: EdgeInsets.all(0.0),
                     onPressed: () {
-                      print('Hello');
+                      print('Hello2');
                     },
                   ),
                 ),
@@ -93,7 +93,7 @@ class Home extends StatelessWidget {
                   child: FlatButton(
                     padding: EdgeInsets.all(0.0),
                     onPressed: () {
-                      print('Hello');
+                      print('Hello3');
                     },
                   ),
                 ),
