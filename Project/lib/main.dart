@@ -48,22 +48,29 @@ class Home extends StatelessWidget {
                     print('Hello');
                   },
                 ),
-              )
-              // FlatButton(
-              //   padding: EdgeInsets.all(0.0),
-              //   onPressed: () {
-              //     print('Hello');
-              //   },
-              //   child: Container(
-              //     alignment: Alignment.center,
-              //     width: 310,
-              //     height: 200,
-              //     decoration: BoxDecoration(
-              //       image: DecorationImage(
-              //           image: AssetImage('assets/images/movie.jpg')),
-              //     ),
-              //   ),
-              // ),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 320,
+                height: 300,
+                // alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  image: DecorationImage(
+                      image: AssetImage('assets/images/sport.jpg'),
+                      fit: BoxFit.fitWidth),
+                ),
+                child: FlatButton(
+                  padding: EdgeInsets.all(0.0),
+                  onPressed: () {
+                    print('Hello');
+                  },
+                ),
+              ),
             ],
           )
         ],
