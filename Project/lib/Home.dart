@@ -33,30 +33,6 @@ class Home extends StatelessWidget {
           Expanded(child: SelectCardGame())
         ],
       ),
-      // body: ListView(
-      //   itemExtent: 265,
-      //   children: [
-      //     Column(
-      //       crossAxisAlignment: CrossAxisAlignment.center,
-      //       children: <Widget>[
-      //         Container(
-      //           margin: EdgeInsets.only(bottom: 30),
-      //           child: Text(
-      //             'A WHOLE\nNEW\nWORD',
-      //             textAlign: TextAlign.center,
-      //             style: TextStyle(
-      //                 fontFamily: 'IndieFlower',
-      //                 fontSize: 60,
-      //                 color: Colors.white,
-      //                 height: 1.3),
-      //           ),
-      //         ),
-      //       ],
-      //     ),
-
-      //     SelectCardGame()
-      //   ],
-      // ),
     );
   }
 }
