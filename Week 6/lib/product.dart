@@ -60,27 +60,28 @@ class Product extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    padding: EdgeInsets.all(0.0),
-                    child: Row(
-                      children: [
-                        IconButton(
+                  Row(
+                    children: [
+                      Container(
+                        child: IconButton(
                           padding: EdgeInsets.all(0.0),
                           icon: Icon(Icons.remove),
                           onPressed: () {},
                         ),
-                        Text(
+                      ),
+                      Container(
+                        child: Text(
                           "0",
                           style: TextStyle(fontSize: 20.0),
                         ),
-                        IconButton(
-                          // splashColor: Colors.transparent,
-                          // highlightColor: Colors.transparent,
+                      ),
+                      Container(
+                        child: IconButton(
                           icon: Icon(Icons.add),
                           onPressed: () {},
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                   Container(
                     padding: EdgeInsets.all(10.0),
