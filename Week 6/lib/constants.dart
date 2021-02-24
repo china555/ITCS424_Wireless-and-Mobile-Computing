@@ -1,11 +1,6 @@
 const FOOD_DATA = [
   {"name": "PUU AAD", "brand": "NONGNAM", "price": 10, "image": "1.png"},
-  {
-    "name": "KUNG MANG KORN",
-    "brand": "NONGNAM",
-    "price": 50,
-    "image": "2.jpg"
-  },
+  {"name": "KUNG MANG KORN", "brand": "NONGNAM", "price": 50, "image": "2.jpg"},
   {"name": "SAA RAAI", "brand": "NONGNAM", "price": 20, "image": "3.png"},
   {
     "name": "SALMON NOT BURN~~~",
@@ -25,18 +20,8 @@ const FOOD_DATA = [
     "price": 50,
     "image": "6.png"
   },
-  {
-    "name": "BANGKOK ROLL",
-    "brand": "NONGNAM",
-    "price": 200,
-    "image": "7.jpg"
-  },
-  {
-    "name": "SWEET BALLS",
-    "brand": "NONGNAM",
-    "price": 10000,
-    "image": "8.jpg"
-  },
+  {"name": "BANGKOK ROLL", "brand": "NONGNAM", "price": 200, "image": "7.jpg"},
+  {"name": "SWEET BALLS", "brand": "NONGNAM", "price": 10000, "image": "8.jpg"},
   {
     "name": "BANGKOK SALMON GONE",
     "brand": "NONGNAM",
@@ -51,3 +36,5 @@ const FOOD_DATA = [
     "image": "11.jpg"
   },
 ];
+
+List cart;
