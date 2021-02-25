@@ -1,13 +1,56 @@
 import 'package:flutter/material.dart';
 import 'appBar.dart';
+import 'constants.dart';
 
-class Product extends StatelessWidget {
-  final String name;
-  final String image;
-  final int price;
-  final String brand;
+class Product extends StatefulWidget {
+  String name;
+  String image;
+  int price;
+  String brand;
+  Product(String name, String brand, String image, int price) {
+    this.name = name;
+    this.image = image;
+    this.brand = brand;
+    this.price = price;
+  }
+  @override
+  _ProductState createState() =>
+      _ProductState(this.name, this.brand, this.image, this.price);
+}
 
-  Product(this.name, this.brand, this.image, this.price);
+class _ProductState extends State<Product> {
+  int quanlity;
+  String name;
+  String image;
+  int price;
+  String brand;
+
+  _ProductState(String name, String brand, String image, int price) {
+    this.name = name;
+    this.image = image;
+    this.brand = brand;
+    this.price = price;
+    if (cart.any((element) => element.containsValue('$name'))) {
+      int index =
+          cart.indexOf(cart.any((element) => element.containsValue('$name')));
+      print(index);
+      this.quanlity = cart[index]['quanlity'];
+    } else {
+      this.quanlity = 0;
+    }
+  }
+
+  Object generateObject() {
+    Object temp = {
+      "name": this.name,
+      "image": this.image,
+      "price": this.price,
+      "brand": this.brand,
+      "quanlity": this.quanlity
+    };
+    return temp;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,24 +64,24 @@ class Product extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                "$name",
+                "${widget.name}",
                 style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
               ),
               Image.asset(
-                "assets/images/$image",
+                "assets/images/${widget.image}",
                 height: 300,
               ),
               Align(
                 alignment: Alignment.topCenter,
                 child: Text(
-                  "$price ฿",
+                  "${widget.price} ฿",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 40,
                   ),
                 ),
               ),
-              Text("$brand"),
+              Text("${widget.brand}"),
               Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,19 +109,29 @@ class Product extends StatelessWidget {
                         child: IconButton(
                           padding: EdgeInsets.all(0.0),
                           icon: Icon(Icons.remove),
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              if (quanlity > 0) {
+                                quanlity--;
+                              }
+                            });
+                          },
                         ),
                       ),
                       Container(
                         child: Text(
-                          "0",
+                          "$quanlity",
                           style: TextStyle(fontSize: 20.0),
                         ),
                       ),
                       Container(
                         child: IconButton(
                           icon: Icon(Icons.add),
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              quanlity++;
+                            });
+                          },
                         ),
                       ),
                     ],
@@ -92,7 +145,16 @@ class Product extends StatelessWidget {
                       ),
                       color: Colors.orange[800],
                       onPressed: () {
-                        // showAlertDialog(context);
+                        if (cart
+                            .any((element) => element.containsValue('$name'))) {
+                          int index = cart.indexOf(cart.any(
+                              (element) => element.containsValue('$name')));
+                          print(index);
+                          cart[index]['quanlity'] = this.quanlity;
+                        } else {
+                          cart.add(generateObject());
+                        }
+                        print(FOOD_DATA[0]);
                       },
                       child: Text(
                         'Buy',

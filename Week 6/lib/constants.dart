@@ -37,4 +37,4 @@ const FOOD_DATA = [
   },
 ];
 
-List cart = new List(FOOD_DATA.length);
+List cart = [];
