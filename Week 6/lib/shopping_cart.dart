@@ -66,7 +66,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                     ),
                   ),
                   Container(
-                    width: 160,
+                    width: 150,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
@@ -99,11 +99,38 @@ class _ShoppingCartState extends State<ShoppingCart> {
       debugShowCheckedModeBanner: false,
       title: 'Shopping Cart',
       home: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          elevation: 0,
           backgroundColor: Colors.white,
-          appBar: MyAppBar(context),
-          body: ListView(
-            children: itemsData,
-          )),
+          title: Text(
+            "$allPrice ฿",
+            style: TextStyle(
+              color: Colors.black54,
+            ),
+          ),
+          leading: IconButton(
+              color: Colors.black,
+              onPressed: () {
+                Navigator.pop(context, 'Nope!');
+              },
+              icon: Icon(Icons.arrow_back, color: Colors.black)),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.shopping_cart_outlined, color: Colors.black),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ShoppingCart()),
+                );
+              },
+            ),
+          ],
+        ),
+        body: ListView(
+          children: itemsData,
+        ),
+      ),
     );
   }
 }
