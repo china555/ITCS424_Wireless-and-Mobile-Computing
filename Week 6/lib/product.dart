@@ -57,7 +57,7 @@ class _ProductState extends State<Product> {
       title: 'Product',
       home: Scaffold(
         backgroundColor: Colors.white,
-        appBar: appBar,
+        appBar: MyAppBar(context),
         body: Padding(
           padding: EdgeInsets.all(16.0),
           child: Column(

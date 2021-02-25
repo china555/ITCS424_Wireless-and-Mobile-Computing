@@ -10,7 +10,7 @@ class Shopping_cart extends StatelessWidget {
       title: 'Shopping Cart',
       home: Scaffold(
         backgroundColor: Colors.white,
-        appBar: appBar,
+        appBar: MyAppBar(context),
         body: Text('waddw'),
       ),
     );

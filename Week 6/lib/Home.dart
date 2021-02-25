@@ -112,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: appBar,
+        appBar: MyAppBar(context),
         body: Container(
           height: size.height,
           child: Column(
