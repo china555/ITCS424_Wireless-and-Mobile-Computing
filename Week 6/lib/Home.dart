@@ -12,7 +12,6 @@ class _MyHomePageState extends State<MyHomePage> {
   ScrollController controller = ScrollController();
   bool closeTopContainer = false;
   double topContainer = 0;
-  double _price = 0.0;
   List<Widget> itemsData = [];
 
   void getPostsData() {
@@ -29,7 +28,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     post["name"], post["brand"], post["image"], post["price"]),
               ),
             );
-            print('_price');
           },
           child: Container(
             height: 150,
@@ -121,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Text(
-                    "Total Price : $_price",
+                    "Total Price : $allPrice",
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -130,9 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   FlatButton(
                       color: Colors.orange[800],
                       onPressed: () {
-                        setState(() {
-                          _price = 0.0;
-                        });
+                        
                       },
                       child: Text(
                         'Clear',
