@@ -16,7 +16,7 @@ class MyAppBar extends AppBar {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Shopping_cart()),
+                    MaterialPageRoute(builder: (context) => ShoppingCart()),
                   );
                 },
               ),
