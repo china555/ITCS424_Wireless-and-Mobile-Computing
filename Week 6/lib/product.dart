@@ -32,7 +32,7 @@ class _ProductState extends State<Product> {
     this.price = price;
     if (cart.any((element) => element.containsValue(this.name))) {
       int index = cart.indexWhere((row) => row['name'].contains(this.name));
-      print("wadadwwaddaadwwd  $index");
+      print("$index");
       this.quanlity = cart[index]['quanlity'];
     } else {
       this.quanlity = 0;
@@ -148,13 +148,16 @@ class _ProductState extends State<Product> {
                             .any((element) => element.containsValue('$name'))) {
                           int index = cart.indexWhere(
                               (row) => row['name'].contains(this.name));
-                          print(index);
                           cart[index]['quanlity'] = this.quanlity;
                         } else {
                           cart.add(generateObject());
                         }
-                        print(FOOD_DATA[0]);
-                        print(cart);
+                        setState(() {
+                          calulateallprice();
+                        });
+                        print(allPrice);
+                        // print(FOOD_DATA[0]);
+                        // print(cart);
                       },
                       child: Text(
                         'Buy',
