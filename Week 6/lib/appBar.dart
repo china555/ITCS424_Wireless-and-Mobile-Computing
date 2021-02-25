@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'shopping_cart.dart';
 
+BuildContext context;
 final appBar = AppBar(
   elevation: 0,
   backgroundColor: Colors.white,
@@ -10,7 +12,12 @@ final appBar = AppBar(
   actions: <Widget>[
     IconButton(
       icon: Icon(Icons.shopping_cart_outlined, color: Colors.black),
-      onPressed: () {},
+      onPressed: () {
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => Shopping_cart()),
+        // );
+      },
     ),
   ],
 );

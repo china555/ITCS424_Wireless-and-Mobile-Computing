@@ -30,10 +30,9 @@ class _ProductState extends State<Product> {
     this.image = image;
     this.brand = brand;
     this.price = price;
-    if (cart.any((element) => element.containsValue('$name'))) {
-      int index =
-          cart.indexOf(cart.any((element) => element.containsValue('$name')));
-      print(index);
+    if (cart.any((element) => element.containsValue(this.name))) {
+      int index = cart.indexWhere((row) => row['name'].contains(this.name));
+      print("wadadwwaddaadwwd  $index");
       this.quanlity = cart[index]['quanlity'];
     } else {
       this.quanlity = 0;
@@ -147,14 +146,15 @@ class _ProductState extends State<Product> {
                       onPressed: () {
                         if (cart
                             .any((element) => element.containsValue('$name'))) {
-                          int index = cart.indexOf(cart.any(
-                              (element) => element.containsValue('$name')));
+                          int index = cart.indexWhere(
+                              (row) => row['name'].contains(this.name));
                           print(index);
                           cart[index]['quanlity'] = this.quanlity;
                         } else {
                           cart.add(generateObject());
                         }
                         print(FOOD_DATA[0]);
+                        print(cart);
                       },
                       child: Text(
                         'Buy',
