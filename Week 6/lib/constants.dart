@@ -36,5 +36,12 @@ List FOOD_DATA = [
     "image": "11.jpg"
   },
 ];
-
+double allPrice = 0.0;
 List cart = [];
+
+void calulateallprice() {
+  allPrice = 0;
+  cart.forEach((element) {
+    allPrice += element['price'] * element['quanlity'];
+  });
+}
