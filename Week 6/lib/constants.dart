@@ -37,7 +37,15 @@ List FOOD_DATA = [
   },
 ];
 double allPrice = 0.0;
-List cart = [];
+List cart = [
+  {
+    "name": "PUU AAD",
+    "image": "1.png",
+    "price": 10,
+    "brand": "NONGNAM",
+    "quanlity": 5
+  }
+];
 
 void calulateallprice() {
   allPrice = 0;

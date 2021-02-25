@@ -12,20 +12,19 @@ class _ShoppingCartState extends State<ShoppingCart> {
 
   void getPostsData() {
     List<dynamic> responseList = cart;
-    print("Hellooooooooooooooo$responseList");
     List<Widget> listItems = [];
     responseList.forEach(
       (post) {
+        int total = post['quanlity'] * post['price'];
         listItems.add(
-          Padding(
-            padding: EdgeInsets.all(18),
+          Container(
             child: Container(
-              margin: EdgeInsets.all(12),
+              margin: EdgeInsets.only(top: 8, left: 12, right: 12),
               height: 120,
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(7),
+                borderRadius: BorderRadius.circular(13),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.5),
@@ -35,7 +34,49 @@ class _ShoppingCartState extends State<ShoppingCart> {
                   ),
                 ],
               ),
-              child: Text('awd'),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    height: double.infinity,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${post['name']}',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          '${post['brand']}',
+                          style: TextStyle(fontSize: 15, color: Colors.grey),
+                        ),
+                        Container(
+                          width: 170,
+                          margin: EdgeInsets.only(top: 10),
+                          child: Text(
+                            'Total price ${post['price']} x ${post['quanlity']} = $total',
+                            style: TextStyle(
+                              fontSize: 17,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: 160,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/${post["image"]}"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         );
@@ -60,61 +101,9 @@ class _ShoppingCartState extends State<ShoppingCart> {
       home: Scaffold(
           backgroundColor: Colors.white,
           appBar: MyAppBar(context),
-          body: Column(
-            children: [
-              Container(
-                child: Container(
-                  margin: EdgeInsets.only(top: 8, left: 12, right: 12),
-                  height: 120,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(7),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 3,
-                        blurRadius: 1,
-                        offset: Offset(2, 3), // changes position of shadow
-                      ),
-                    ],
-                  ),
-                  child: Text('awd'),
-                ),
-              ),
-              Container(
-                child: Container(
-                  margin: EdgeInsets.only(top: 8, left: 12, right: 12),
-                  height: 120,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(7),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 3,
-                        blurRadius: 3,
-                        offset: Offset(2, 3), // changes position of shadow
-                      ),
-                    ],
-                  ),
-                  child: Text('awd'),
-                ),
-              ),
-            ],
-          )
-          // body: Column(
-          //   children: [
-          //     ListView.builder(
-          //       itemCount: itemsData.length,
-          //       itemBuilder: (context, index) {
-          //         return itemsData[index];
-          //       },
-          //     )
-          //   ],
-          // ),
-          ),
+          body: ListView(
+            children: itemsData,
+          )),
     );
   }
 }
