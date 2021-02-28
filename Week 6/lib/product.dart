@@ -3,16 +3,11 @@ import 'appBar.dart';
 import 'constants.dart';
 
 class Product extends StatefulWidget {
-  String name;
-  String image;
-  int price;
-  String brand;
-  Product(String name, String brand, String image, int price) {
-    this.name = name;
-    this.image = image;
-    this.brand = brand;
-    this.price = price;
-  }
+  final String name;
+  final String image;
+  final int price;
+  final String brand;
+  Product(this.name, this.brand, this.image, this.price);
   @override
   _ProductState createState() =>
       _ProductState(this.name, this.brand, this.image, this.price);
@@ -30,6 +25,8 @@ class _ProductState extends State<Product> {
     this.image = image;
     this.brand = brand;
     this.price = price;
+    print("$name");
+
     if (cart.any((element) => element.containsValue(this.name))) {
       int index = cart.indexWhere((row) => row['name'].contains(this.name));
       print("$index");
@@ -155,9 +152,6 @@ class _ProductState extends State<Product> {
                         setState(() {
                           calulateallprice();
                         });
-                        print(allPrice);
-                        // print(FOOD_DATA[0]);
-                        // print(cart);
                       },
                       child: Text(
                         'Buy',
