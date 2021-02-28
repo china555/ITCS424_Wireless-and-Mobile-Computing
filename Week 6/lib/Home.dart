@@ -15,7 +15,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> itemsData = [];
 
   void getPostsData() {
-    List<dynamic> responseList = FOOD_DATA;
+    List<dynamic> responseList = foodData;
     List<Widget> listItems = [];
     responseList.forEach((post) {
       listItems.add(
@@ -127,9 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   FlatButton(
                       color: Colors.orange[800],
-                      onPressed: () {
-                        
-                      },
+                      onPressed: () {},
                       child: Text(
                         'Clear',
                         style: TextStyle(color: Colors.white),
