@@ -25,7 +25,6 @@ class _ProductState extends State<Product> {
     this.image = image;
     this.brand = brand;
     this.price = price;
-    print("$name");
 
     if (cart.any((element) => element.containsValue(this.name))) {
       int index = cart.indexWhere((row) => row['name'].contains(this.name));
