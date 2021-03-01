@@ -46,6 +46,14 @@ class _ProductState extends State<Product> {
     return temp;
   }
 
+  void increaseQuanlity() {
+    this.quanlity++;
+  }
+
+  void decreaseQuanlity() {
+    this.quanlity--;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -107,7 +115,7 @@ class _ProductState extends State<Product> {
                           onPressed: () {
                             setState(() {
                               if (quanlity > 0) {
-                                quanlity--;
+                                decreaseQuanlity();
                               }
                             });
                           },
@@ -124,7 +132,7 @@ class _ProductState extends State<Product> {
                           icon: Icon(Icons.add),
                           onPressed: () {
                             setState(() {
-                              quanlity++;
+                              increaseQuanlity();
                             });
                           },
                         ),
