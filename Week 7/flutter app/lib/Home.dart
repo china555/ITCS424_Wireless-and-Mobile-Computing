@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'product.dart';
 import 'appBar.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -89,9 +92,17 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  getdata() async {
+    const url = 'http://localhost:8000/';
+    http.Response response = await http
+        .get(Uri.http(url, ''), headers: {"Accept": "application/json"});
+    print(response);
+  }
+
   @override
   void initState() {
     super.initState();
+    getdata();
     getPostsData();
     controller.addListener(() {
       double value = controller.offset / 119;
