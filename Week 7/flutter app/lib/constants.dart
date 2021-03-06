@@ -1,4 +1,4 @@
-List foodData;
+//List foodData =[];
 //[
 //   {"name": "PUU AAD", "brand": "NONGNAM", "price": 10, "image": "1.png"},
 //   {"name": "KUNG MANG KORN", "brand": "NONGNAM", "price": 50, "image": "2.jpg"},
