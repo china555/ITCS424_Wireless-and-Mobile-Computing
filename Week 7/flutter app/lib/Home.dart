@@ -16,8 +16,10 @@ class _MyHomePageState extends State<MyHomePage> {
   bool closeTopContainer = false;
   double topContainer = 0;
   List<Widget> itemsData = [];
+  List foodData = [];
 
   void getPostsData() {
+    print(foodData);
     List<dynamic> responseList = foodData;
     List<Widget> listItems = [];
     responseList.forEach((post) {
@@ -93,17 +95,21 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   getdata() async {
-    const url = 'http://localhost:8000/';
-    http.Response response = await http
-        .get(Uri.http(url, ''), headers: {"Accept": "application/json"});
-    print(response);
+    http.Response response = await http.get(Uri.http('10.0.2.2:8000', '/'),
+        headers: {"Accept": "application/json"});
+    foodData = json.decode(response.body);
+    print(foodData[0]);
+  }
+
+  initstatefunction() async {
+    await getdata();
+    getPostsData();
   }
 
   @override
   void initState() {
     super.initState();
-    getdata();
-    getPostsData();
+    initstatefunction();
     controller.addListener(() {
       double value = controller.offset / 119;
 
