@@ -24,7 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
     List<Widget> listItems = [];
     responseList.forEach((post) {
       listItems.add(
-        FlatButton(
+        TextButton(
           onPressed: () {
             Navigator.push(
               context,
