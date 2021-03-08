@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'Card.dart';
+import 'package:flutter/services.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Scaffold(
       backgroundColor: Color.fromRGBO(26, 35, 126, 1),
       body: Column(
