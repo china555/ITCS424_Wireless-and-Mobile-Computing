@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:sensors/sensors.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeRight,
+  ]);
   runApp(MyApp());
 }
 
@@ -10,65 +16,82 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.indigo,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: GameGuessWord(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
+class GameGuessWord extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _GameGuessWordState createState() => _GameGuessWordState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _GameGuessWordState extends State<GameGuessWord> {
+  Color _backgroundColor = Colors.indigo;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
+  /// Upright: [-10, 0, 0]
+  /// Tilt forward: [0, 0, -10]
+  /// Tilt backward: [0, 0, 10]
+
+  @override
+  void initState() {
+    super.initState();
+    accelerometerEvents.listen((AccelerometerEvent event) {
+      setState(() {
+        // Manipulate the UI here, something like:
+        if (event.z < -9) {
+          _backgroundColor = Colors.green;
+        } else if (event.z > 9) {
+          _backgroundColor = Colors.red;
+        } else {
+          _backgroundColor = Colors.indigo;
+        }
+      });
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              child: Center(
-                child: Column(),
+      backgroundColor: _backgroundColor,
+      body: Column(
+        // mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(
+                top: (MediaQuery.of(context).size.height) / 2 - 60),
+            child: Text(
+              'FootBall',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 100,
+                color: Colors.white,
               ),
             ),
-            Text(
-              'You have pushed the button this many times:',
+          ),
+          Container(
+            margin:
+                EdgeInsets.only(top: (MediaQuery.of(context).size.height / 8)),
+            padding: EdgeInsets.all(10),
+            child: Center(
+              child: Container(
+                padding: EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: Colors.amber[700],
+                ),
+                child: Text(
+                  '60',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
