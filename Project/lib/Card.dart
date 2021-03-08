@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
+import 'guess.dart';
 
 class SelectCardGame extends StatefulWidget {
   @override
@@ -28,10 +29,16 @@ class _SelectCardGameState extends State<SelectCardGame> {
                   image: DecorationImage(
                       image: AssetImage('${post["image"]}'), fit: BoxFit.cover),
                 ),
-                child: FlatButton(
-                  padding: EdgeInsets.all(0.0),
+                child: TextButton(
                   onPressed: () {
-                    print('Hello1');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => GameGuessWord(
+                          post["words"],
+                        ),
+                      ),
+                    );
                   },
                   child: null,
                 ),
