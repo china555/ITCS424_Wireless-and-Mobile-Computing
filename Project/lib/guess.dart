@@ -13,32 +13,36 @@ class _GameGuessWordState extends State<GameGuessWord> {
   Color _backgroundColor = Colors.indigo;
   List words = [];
   int index = 0;
+  bool test = true;
   _GameGuessWordState(this.words);
   @override
   void initState() {
     super.initState();
     accelerometerEvents.listen((AccelerometerEvent event) {
-      bool test = true;
-      if (event.z < 3 || event.z > -3) {
-        test = false;
+      if (event.z < 3 && test == false && event.z > 0 ||
+          event.z < 0 && event.z > -3 && test == false) {
+        test = true;
       }
-      setState(() {
-        // Manipulate the UI here, something like:
-        print(words[index]);
-        if (event.z < -9) {
-          _backgroundColor = Colors.green;
-          if (event.z == 0) {
-            index++;
+      if (test) {
+        setState(() {
+          // Manipulate the UI here, something like:
+          if (event.z < -9) {
+            _backgroundColor = Colors.green;
+            test = false;
+            if (index < words.length) {
+              index++;
+            }
+          } else if (event.z > 9) {
+            _backgroundColor = Colors.red;
+            test = false;
+            if (index < words.length) {
+              index++;
+            }
+          } else {
+            _backgroundColor = Colors.indigo;
           }
-        } else if (event.z > 9) {
-          _backgroundColor = Colors.red;
-          if (event.z == 0) {
-            index++;
-          }
-        } else {
-          _backgroundColor = Colors.indigo;
-        }
-      });
+        });
+      }
     });
   }
 
