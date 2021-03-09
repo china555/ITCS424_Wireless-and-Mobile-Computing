@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sensors/sensors.dart';
 import 'package:flutter/services.dart';
+import 'Home.dart';
 
 class GameGuessWord extends StatefulWidget {
-  List words = [];
-  GameGuessWord(this.words);
+  final List words;
+  GameGuessWord({Key key, this.words}) : super(key: key);
   @override
   _GameGuessWordState createState() => _GameGuessWordState(words);
 }
@@ -26,7 +27,12 @@ class _GameGuessWordState extends State<GameGuessWord> {
           if (index < words.length - 1) {
             index++;
           } else {
-            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Home(),
+              ),
+            );
           }
           test = true;
         }
