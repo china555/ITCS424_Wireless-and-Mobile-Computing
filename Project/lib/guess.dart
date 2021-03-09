@@ -18,32 +18,36 @@ class _GameGuessWordState extends State<GameGuessWord> {
   @override
   void initState() {
     super.initState();
-    accelerometerEvents.listen((AccelerometerEvent event) {
-      if (event.z < 3 && test == false && event.z > 0 ||
-          event.z < 0 && event.z > -3 && test == false) {
-        test = true;
-      }
-      if (test) {
-        setState(() {
-          // Manipulate the UI here, something like:
-          if (event.z < -9) {
-            _backgroundColor = Colors.green;
-            test = false;
-            if (index < words.length) {
-              index++;
-            }
-          } else if (event.z > 9) {
-            _backgroundColor = Colors.red;
-            test = false;
-            if (index < words.length) {
-              index++;
-            }
+    accelerometerEvents.listen(
+      (AccelerometerEvent event) {
+        if (event.z < 3 && test == false && event.z > 0 ||
+            event.z < 0 && event.z > -3 && test == false) {
+          print(words.length);
+          if (index < words.length - 1) {
+            index++;
           } else {
-            _backgroundColor = Colors.indigo;
+            Navigator.pop(context);
           }
-        });
-      }
-    });
+          test = true;
+        }
+        if (test) {
+          setState(
+            () {
+              // Manipulate the UI here, something like:
+              if (event.z < -9) {
+                _backgroundColor = Colors.green;
+                test = false;
+              } else if (event.z > 9) {
+                _backgroundColor = Colors.red;
+                test = false;
+              } else {
+                _backgroundColor = Colors.indigo;
+              }
+            },
+          );
+        }
+      },
+    );
   }
 
   @override
