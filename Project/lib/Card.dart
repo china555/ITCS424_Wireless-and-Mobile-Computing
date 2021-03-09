@@ -35,7 +35,7 @@ class _SelectCardGameState extends State<SelectCardGame> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => GameGuessWord(
-                          post["words"],
+                          words: post["words"],
                         ),
                       ),
                     );
