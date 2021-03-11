@@ -69,17 +69,25 @@ class _GameGuessWordState extends State<GameGuessWord> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.only(
-                top: (MediaQuery.of(context).size.height) / 2 - 60),
-            child: Text(
-              "${words[index]}",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 100,
-                color: Colors.white,
-              ),
-            ),
-          ),
+              margin: EdgeInsets.only(
+                  top: (MediaQuery.of(context).size.height) / 2 - 60),
+              child: words[index].length < 16
+                  ? Text(
+                      "${words[index]}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 100,
+                        color: Colors.white,
+                      ),
+                    )
+                  : Text(
+                      "${words[index]}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 80,
+                        color: Colors.white,
+                      ),
+                    )),
           Container(
             margin:
                 EdgeInsets.only(top: (MediaQuery.of(context).size.height / 8)),
