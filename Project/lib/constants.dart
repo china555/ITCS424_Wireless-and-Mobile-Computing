@@ -25,7 +25,7 @@ const gameSelected = [
       'Whiplash',
       'Maleficent',
       'Nightcrawler',
-      'Budapest Hotel',
+      'The Grand Budapest Hotel',
       'The Lego Movie',
       'Gone Girl',
       'The Fault in Our Stars',
