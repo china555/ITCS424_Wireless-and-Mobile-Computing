@@ -64,49 +64,37 @@ class _GameGuessWordState extends State<GameGuessWord> {
     ]);
     return Scaffold(
       backgroundColor: _backgroundColor,
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Container(
-              margin: EdgeInsets.only(
-                  top: (MediaQuery.of(context).size.height) / 2 - 60),
-              child: words[index].length < 16
-                  ? Text(
-                      "${words[index]}",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 100,
-                        color: Colors.white,
-                      ),
-                    )
-                  : Text(
-                      "${words[index]}",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 80,
-                        color: Colors.white,
-                      ),
-                    )),
-          Container(
-            margin:
-                EdgeInsets.only(top: (MediaQuery.of(context).size.height / 8)),
-            padding: EdgeInsets.all(10),
-            child: Center(
-              child: Container(
-                padding: EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: Colors.amber[700],
-                ),
-                child: Text(
-                  '60',
-                  style: TextStyle(fontSize: 20),
+      body: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Stack(
+          children: [
+            Center(
+              child: Text(
+                '${words[index]}',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 100,
+                  color: Colors.white,
                 ),
               ),
             ),
-          ),
-        ],
+            Container(
+              margin: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height / 1.2,
+                  left: MediaQuery.of(context).size.width / 2.1),
+              padding: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: Colors.amber[700],
+              ),
+              child: Text(
+                '60',
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
