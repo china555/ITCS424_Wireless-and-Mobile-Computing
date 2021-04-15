@@ -27,12 +27,7 @@ class _GameGuessWordState extends State<GameGuessWord> {
           if (index < words.length - 1) {
             index++;
           } else {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Home(),
-              ),
-            );
+            Navigator.pop(context);
           }
           test = true;
         }
