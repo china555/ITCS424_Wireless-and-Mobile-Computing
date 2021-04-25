@@ -15,21 +15,26 @@ class _GameGuessWordState extends State<GameGuessWord> {
   List words = [];
   int index = 0;
   bool test = true;
+  dynamic acceleroEvent;
   _GameGuessWordState(this.words);
   @override
   void initState() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
     super.initState();
-    accelerometerEvents.listen(
+    acceleroEvent = accelerometerEvents.listen(
       (AccelerometerEvent event) {
-        if (event.z < 3 && test == false && event.z > 0 ||
-            event.z < 0 && event.z > -3 && test == false) {
-          print(words.length);
+        if (event.z < 3 && !test && event.z > 0 ||
+            event.z < 0 && event.z > -3 && !test) {
           if (index < words.length - 1) {
             index++;
+            test = true;
           } else {
             Navigator.pop(context);
+            test = false;
           }
-          test = true;
         }
         if (test) {
           setState(
@@ -52,11 +57,14 @@ class _GameGuessWordState extends State<GameGuessWord> {
   }
 
   @override
+  void dispose() {
+    acceleroEvent.dispose();
+    super.dispose();
+    print('dispose');
+  }
+
+  @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
-    ]);
     return Scaffold(
       backgroundColor: _backgroundColor,
       body: SizedBox(

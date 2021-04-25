@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'guess.dart';
+import 'package:flutter/services.dart';
 
 class SelectCardGame extends StatefulWidget {
   @override
@@ -30,8 +31,8 @@ class _SelectCardGameState extends State<SelectCardGame> {
                       image: AssetImage('${post["image"]}'), fit: BoxFit.cover),
                 ),
                 child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
+                  onPressed: () async {
+                    await Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => GameGuessWord(
@@ -39,6 +40,10 @@ class _SelectCardGameState extends State<SelectCardGame> {
                         ),
                       ),
                     );
+                    SystemChrome.setPreferredOrientations([
+                      DeviceOrientation.portraitUp,
+                      DeviceOrientation.portraitDown,
+                    ]);
                   },
                   child: null,
                 ),
@@ -51,6 +56,12 @@ class _SelectCardGameState extends State<SelectCardGame> {
     setState(() {
       selectCard = listCard;
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print('CARD dispose');
   }
 
   @override
