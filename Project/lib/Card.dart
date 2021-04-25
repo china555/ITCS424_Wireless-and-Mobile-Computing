@@ -53,9 +53,11 @@ class _SelectCardGameState extends State<SelectCardGame> {
         );
       },
     );
-    setState(() {
-      selectCard = listCard;
-    });
+    if (mounted) {
+      setState(() {
+        selectCard = listCard;
+      });
+    }
   }
 
   @override

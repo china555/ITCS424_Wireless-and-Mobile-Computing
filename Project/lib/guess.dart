@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sensors/sensors.dart';
 import 'package:flutter/services.dart';
-import 'Home.dart';
 
 class GameGuessWord extends StatefulWidget {
   final List words;
@@ -26,31 +25,33 @@ class _GameGuessWordState extends State<GameGuessWord> {
     super.initState();
     acceleroEvent = accelerometerEvents.listen(
       (AccelerometerEvent event) {
-        if (event.z < 3 && !test && event.z > 0 ||
-            event.z < 0 && event.z > -3 && !test) {
+        if (event.z < 3 && test == false && event.z > 0 ||
+            event.z < 0 && event.z > -3 && test == false) {
+          print(words.length);
           if (index < words.length - 1) {
             index++;
-            test = true;
           } else {
             Navigator.pop(context);
-            test = false;
           }
+          test = true;
         }
         if (test) {
-          setState(
-            () {
-              // Manipulate the UI here, something like:
-              if (event.z < -9) {
-                _backgroundColor = Colors.green;
-                test = false;
-              } else if (event.z > 9) {
-                _backgroundColor = Colors.red;
-                test = false;
-              } else {
-                _backgroundColor = Colors.indigo;
-              }
-            },
-          );
+          if (mounted) {
+            setState(
+              () {
+                // Manipulate the UI here, something like:
+                if (event.z < -9) {
+                  _backgroundColor = Colors.green;
+                  test = false;
+                } else if (event.z > 9) {
+                  _backgroundColor = Colors.red;
+                  test = false;
+                } else {
+                  _backgroundColor = Colors.indigo;
+                }
+              },
+            );
+          }
         }
       },
     );
