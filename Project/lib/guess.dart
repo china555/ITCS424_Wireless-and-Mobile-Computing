@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sensors/sensors.dart';
 import 'package:flutter/services.dart';
+import 'dart:async';
 
 class GameGuessWord extends StatefulWidget {
   final List words;
@@ -14,7 +15,8 @@ class _GameGuessWordState extends State<GameGuessWord> {
   List words = [];
   int index;
   bool test;
-  int time;
+  int _time;
+  Timer _timer;
   dynamic acceleroEvent;
   _GameGuessWordState(this.words);
   @override
@@ -26,7 +28,6 @@ class _GameGuessWordState extends State<GameGuessWord> {
     super.initState();
     test = true;
     index = 0;
-    time = 60;
     acceleroEvent = accelerometerEvents.listen(
       (AccelerometerEvent event) {
         if (event.z < 3 && test == false && event.z > 0 ||
@@ -35,6 +36,7 @@ class _GameGuessWordState extends State<GameGuessWord> {
           if (index < words.length - 1) {
             index++;
           } else {
+            _timer.cancel();
             Navigator.pop(context);
           }
           test = true;
@@ -59,7 +61,21 @@ class _GameGuessWordState extends State<GameGuessWord> {
         }
       },
     );
-    print(acceleroEvent.runtimeType);
+    _startTimer();
+  }
+
+  void _startTimer() {
+    _time = 60;
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (_time > 0) {
+          _time--;
+        } else {
+          _timer.cancel();
+          Navigator.pop(context);
+        }
+      });
+    });
   }
 
   @override
@@ -97,7 +113,7 @@ class _GameGuessWordState extends State<GameGuessWord> {
                 color: Colors.amber[700],
               ),
               child: Text(
-                '60',
+                '$_time',
                 style: TextStyle(fontSize: 20),
               ),
             ),
