@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sensors/sensors.dart';
 import 'package:flutter/services.dart';
 import 'dart:async';
+import 'Result.dart';
 
 class GameGuessWord extends StatefulWidget {
   final List words;
@@ -17,6 +18,7 @@ class _GameGuessWordState extends State<GameGuessWord> {
   bool test;
   int _time;
   Timer _timer;
+  int count;
   dynamic acceleroEvent;
   _GameGuessWordState(this.words);
   @override
@@ -25,6 +27,7 @@ class _GameGuessWordState extends State<GameGuessWord> {
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
+    count = 0;
     super.initState();
     test = true;
     index = 0;
@@ -32,12 +35,16 @@ class _GameGuessWordState extends State<GameGuessWord> {
       (AccelerometerEvent event) {
         if (event.z < 3 && test == false && event.z > 0 ||
             event.z < 0 && event.z > -3 && test == false) {
-          print(words.length);
           if (index < words.length - 1) {
             index++;
           } else {
             _timer.cancel();
-            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ResultPage(score: count + 1),
+              ),
+            );
           }
           test = true;
         }
@@ -48,6 +55,7 @@ class _GameGuessWordState extends State<GameGuessWord> {
                 // Manipulate the UI here, something like:
                 if (event.z < -9) {
                   _backgroundColor = Colors.green;
+                  count++;
                   test = false;
                 } else if (event.z > 9) {
                   _backgroundColor = Colors.red;
@@ -72,7 +80,12 @@ class _GameGuessWordState extends State<GameGuessWord> {
           _time--;
         } else {
           _timer.cancel();
-          Navigator.pop(context);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ResultPage(score: count + 1),
+            ),
+          );
         }
       });
     });
@@ -81,7 +94,6 @@ class _GameGuessWordState extends State<GameGuessWord> {
   @override
   void dispose() {
     super.dispose();
-    print('dispose');
   }
 
   @override
