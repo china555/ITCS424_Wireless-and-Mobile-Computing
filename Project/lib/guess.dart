@@ -12,8 +12,9 @@ class GameGuessWord extends StatefulWidget {
 class _GameGuessWordState extends State<GameGuessWord> {
   Color _backgroundColor = Colors.indigo;
   List words = [];
-  int index = 0;
-  bool test = true;
+  int index;
+  bool test;
+  int time;
   dynamic acceleroEvent;
   _GameGuessWordState(this.words);
   @override
@@ -23,6 +24,9 @@ class _GameGuessWordState extends State<GameGuessWord> {
       DeviceOrientation.landscapeRight,
     ]);
     super.initState();
+    test = true;
+    index = 0;
+    time = 60;
     acceleroEvent = accelerometerEvents.listen(
       (AccelerometerEvent event) {
         if (event.z < 3 && test == false && event.z > 0 ||
@@ -55,11 +59,11 @@ class _GameGuessWordState extends State<GameGuessWord> {
         }
       },
     );
+    print(acceleroEvent.runtimeType);
   }
 
   @override
   void dispose() {
-    acceleroEvent.dispose();
     super.dispose();
     print('dispose');
   }
