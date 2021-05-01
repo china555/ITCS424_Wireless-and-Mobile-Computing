@@ -63,7 +63,6 @@ class _SelectCardGameState extends State<SelectCardGame> {
   @override
   void dispose() {
     super.dispose();
-    print('CARD dispose');
   }
 
   @override
