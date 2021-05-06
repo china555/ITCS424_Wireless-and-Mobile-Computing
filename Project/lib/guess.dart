@@ -42,7 +42,7 @@ class _GameGuessWordState extends State<GameGuessWord> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ResultPage(score: count + 1),
+                builder: (context) => ResultPage(score: count),
               ),
             );
           }
@@ -83,7 +83,7 @@ class _GameGuessWordState extends State<GameGuessWord> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ResultPage(score: count + 1),
+              builder: (context) => ResultPage(score: count),
             ),
           );
         }

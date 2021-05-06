@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 // Navigator.popUntil(context, ModalRoute.withName('/screen2'));
 class ResultPage extends StatelessWidget {
-  int score;
+  final int score;
   ResultPage({Key key, this.score});
   @override
   Widget build(BuildContext context) {
